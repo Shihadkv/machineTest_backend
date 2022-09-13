@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
+app.get("/",(req,res)=>res.send("api is working"))
 app.use("/api/auth", authRoute);
 app.use("/api/notes", NotesRoutes);
 
