@@ -5,6 +5,7 @@ import authRoute from "./Routes/UserRoutes.js";
 import NotesRoutes from "./Routes/ContentRoutes.js"
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+import cors from 'cors'
 
 const app = express();
 app.use(express.json());
@@ -14,7 +15,7 @@ dotenv.config()
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
-
+app.use(cors())
 app.get("/",(req,res)=>res.send("api is working"))
 app.use("/api/auth", authRoute);
 app.use("/api/notes", NotesRoutes);
