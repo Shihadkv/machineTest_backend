@@ -5,7 +5,7 @@ import authRoute from "./Routes/UserRoutes.js";
 import NotesRoutes from "./Routes/ContentRoutes.js"
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
-import cors from 'cors'
+// import cors from 'cors'
 
 
 dotenv.config()
@@ -17,8 +17,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
-app.use(cors())
+// app.use(cors())
 app.get("/",(req,res)=>res.send("api is working"))
+
+
+
 app.use("/api/auth", authRoute);
 app.use("/api/notes", NotesRoutes);
 
@@ -31,7 +34,7 @@ app.listen(PORT, () => {
 
 console.log(process.env.MONGO_URL,"tftfv");
 mongoose
-  .connect(process.env.MONGO_URL, {
+  .connect("mongodb://localhost:27017/Notes", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
