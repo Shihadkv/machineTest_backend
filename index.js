@@ -3,19 +3,15 @@ import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import authRoute from "./Routes/UserRoutes.js";
 import NotesRoutes from "./Routes/ContentRoutes.js"
-import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import cors from 'cors'
 
 
 dotenv.config()
 const app = express();
+
 app.use(express.json());
-
-
-
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json())
 app.use(cookieParser());
 app.use(cors())
 
@@ -25,10 +21,12 @@ app.get("/",(req,res)=>res.send("api is working"))
 
 app.use("/api/auth", authRoute);
 app.use("/api/notes", NotesRoutes);
+
 app.use((req, res, next) => {
   res.set("Cache-Control", "no-store");
   next();
 });
+
 app.use((err,req,res,next)=>{
   res.status(500).json(err)
 })
