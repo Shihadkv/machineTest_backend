@@ -29,7 +29,7 @@ app.listen(PORT, () => {
 });
 
 
-console.log(process.env.MONGO_URL);
+console.log(process.env.MONGO_URL,"tftfv");
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -39,6 +39,7 @@ mongoose
     console.log("DataBase Connection Successful");
   })
   .catch((err) => {
+    //console.log(err);
     console.log(err.message, "DataBase Connection Failed");
   });
 
