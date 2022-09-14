@@ -7,11 +7,13 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import cors from 'cors'
 
+
+dotenv.config()
 const app = express();
 app.use(express.json());
 
 
-dotenv.config()
+
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
@@ -26,8 +28,10 @@ app.listen(PORT, () => {
   console.log("server is running on port 5000");
 });
 
+
+console.log(process.env.MONGO_URL);
 mongoose
-  .connect("mongodb+srv://Shihadbh:Shihadbh964527@cluster0.uwsu7nh.mongodb.net/stickyNotes", {
+  .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
